@@ -41,7 +41,7 @@ type QueryEvent = {
 
 export class GoodWallet {
   ready: Promise<Web3>
-  wallet: Web3
+  wallet: MultipleAccountsWallet
   accountsContract: Web3.eth.Contract
   tokenContract: Web3.eth.Contract
   identityContract: Web3.eth.Contract
@@ -63,7 +63,7 @@ export class GoodWallet {
       .then(wallet => {
         this.wallet = wallet
         this.account = this.wallet.eth.defaultAccount
-        this.accounts = this.wallet.eth.accounts.wallet
+        this.accounts = this.wallet.accounts
         this.networkId = Config.networkId
         this.gasPrice = wallet.utils.toWei('1', 'gwei')
         this.identityContract = new this.wallet.eth.Contract(

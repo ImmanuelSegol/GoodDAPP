@@ -13,6 +13,9 @@ export default class WalletFactory {
   static create(walletType: string): Promise<Web3> {
     switch (walletType) {
       case 'software':
+        let provider: SoftwareWalletProvider = new SoftwareWalletProvider(Config.ethereum[Config.networkId])
+        break
+      case 'software':
       default:
         let provider: SoftwareWalletProvider = new SoftwareWalletProvider(Config.ethereum[Config.networkId])
         return provider.ready
